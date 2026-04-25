@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ServioNest AI</title>
+
+<link rel="stylesheet" href="assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement">
+🔥 Launch Offer: 20% OFF first 3 months — Use code LAUNCH39
+</div>
+
+<!-- Navigation -->
+<header class="navbar">
+<div class="container nav-inner">
+
+<div class="logo">
+ServioNest <span>AI</span>
+</div>
+
+<nav class="nav-links">
+<a href="#">Plumbers</a>
+<a href="#">Clinics</a>
+<a href="#">Property</a>
+<a href="#">Pricing</a>
+<a href="#">FAQ</a>
+<a href="#">Contact</a>
+</nav>
+
+<div class="nav-cta">
+<button class="btn-outline">Book Free Demo</button>
+<button class="btn-primary">Start 7-Day Free Trial</button>
+</div>
+
+</div>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+<div class="container hero-grid">
+
+<!-- LEFT CONTENT -->
+<div class="hero-content">
+
+<div class="pill">
+⚡ 24/7 Lead Capture • Booking • Automation
+</div>
+
+<h1>
+AI-Powered Growth Platform for
+<span>Service Businesses</span>
+</h1>
+
+<p>
+ServioNest AI captures leads, books appointments, automates replies,
+and increases conversions — even while you're on a job.
+</p>
+
+<div class="hero-buttons">
+<button class="btn-primary large">Start 7-Day Free Trial</button>
+<button class="btn-outline large">Book Free Demo</button>
+</div>
+
+<div class="hero-meta">
+£49/month • 7-Day Free Trial • Cancel anytime • Setup in 48 hours
+</div>
+
+</div>
+
+<!-- RIGHT DASHBOARD -->
+<div class="hero-visual">
+
+<div class="dashboard-card">
+
+<div class="dashboard-sidebar">
+<p class="active">Dashboard</p>
+<p>Conversations</p>
+<p>Leads</p>
+<p>Bookings</p>
+<p>Analytics</p>
+<p>Settings</p>
+</div>
+
+<div class="dashboard-main">
+
+<div class="stats">
+<div class="stat">
+<h3>128</h3>
+<span>Total Leads</span>
+</div>
+<div class="stat">
+<h3>42</h3>
+<span>Bookings</span>
+</div>
+<div class="stat">
+<h3>32%</h3>
+<span>Conversion</span>
+</div>
+</div>
+
+<canvas id="leadChart"></canvas>
+
+</div>
+</div>
+
+<div class="assistant-card">
+<h4>ServioNest AI Assistant</h4>
+<p>Hi 👋 I'm your AI assistant.<br>How can I help you today?</p>
+
+<button>Select service type</button>
+<button>Share email / phone</button>
+<button>Ask a question</button>
+
+<small>We typically reply in a few seconds.</small>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- LOWER SECTION -->
+<section class="lower">
+<div class="container lower-grid">
+
+<!-- PRICING -->
+<div class="pricing-card">
+<h3>ServioNest AI</h3>
+<div class="price">£49 <span>/month</span></div>
+
+<ul>
+<li>✔ AI chat on your website</li>
+<li>✔ Lead capture & booking flow</li>
+<li>✔ Email notifications</li>
+<li>✔ Industry-specific AI prompts</li>
+<li>✔ Install in 48 hours</li>
+</ul>
+
+<button class="btn-primary full">Start Free Trial</button>
+<p class="setup">Setup: £49 one-off • Use code LAUNCH39</p>
+</div>
+
+<!-- WHY CHOOSE -->
+<div class="why-card">
+<h3>Why Businesses Choose ServioNest AI</h3>
+<p>✔ Capture more leads 24/7</p>
+<p>✔ Automate & save time</p>
+<p>✔ Increase bookings & revenue</p>
+<p>✔ Easy setup, no hassle</p>
+</div>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-card">
+<h3>What Our Clients Say</h3>
+<p>⭐⭐⭐⭐⭐</p>
+<p>“We booked 12 jobs in the first week.”</p>
+</div>
+
+<!-- FAQ -->
+<div class="faq-card">
+<h3>FAQ</h3>
+<p><strong>When does billing start?</strong><br>
+After your 7-day free trial.</p>
+
+<p><strong>Is there a contract?</strong><br>
+No, cancel anytime.</p>
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+<div class="container footer-inner">
+
+<div class="social">
+<span>Facebook</span>
+<span>Instagram</span>
+<span>WhatsApp</span>
+</div>
+
+<div class="email">
+hello@servionest.com
+</div>
+
+<div class="copy">
+© 2026 ServioNest AI. All rights reserved.
+</div>
+
+</div>
+</footer>
+
+<script>
+const ctx = document.getElementById('leadChart').getContext('2d');
+
+new Chart(ctx, {
+type: 'line',
+data: {
+labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+datasets: [{
+data: [12,19,15,28,35,48,60],
+borderColor: '#22c55e',
+backgroundColor: 'rgba(34,197,94,0.2)',
+fill: true,
+tension: 0.4
+}]
+},
+options: {
+plugins: { legend: { display: false }},
+scales: {
+x: { ticks: { color: '#94a3b8' }},
+y: { ticks: { color: '#94a3b8' }}
+}
+}
+});
+</script>
+
+</body>
+</html>
