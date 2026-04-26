@@ -1,128 +1,110 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>ServioNest – AI Growth Platform</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>ServioNest</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
-      background: #0f172a;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0b1c3d, #08142b);
       color: white;
       text-align: center;
     }
 
-    header {
-      padding: 60px 20px;
-    }
-
     h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
+      margin-top: 60px;
+      font-size: 48px;
     }
 
-    p {
+    .subtitle {
       opacity: 0.8;
+      margin-bottom: 40px;
     }
 
-    .section {
-      padding: 60px 20px;
-    }
-
-    .contact-box {
-      max-width: 500px;
-      margin: auto;
-      background: #1e293b;
+    .card {
+      background: #1c2a44;
       padding: 30px;
-      border-radius: 10px;
+      border-radius: 12px;
+      width: 400px;
+      margin: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     }
 
     input, textarea {
       width: 100%;
       padding: 12px;
-      margin: 10px 0;
+      margin-bottom: 15px;
       border-radius: 6px;
       border: none;
+      font-size: 14px;
     }
 
     button {
-      background: #22c55e;
-      border: none;
-      padding: 12px 20px;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
       width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      background: #2ecc71;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16px;
     }
 
     button:hover {
-      background: #16a34a;
-    }
-
-    footer {
-      padding: 30px;
-      font-size: 14px;
-      opacity: 0.6;
+      background: #27ae60;
     }
   </style>
 </head>
 
 <body>
 
-<header>
   <h1>ServioNest</h1>
-  <p>AI-Powered Growth Platform for Modern Businesses</p>
-</header>
+  <div class="subtitle">
+    AI-Powered Growth Platform for Modern Businesses
+  </div>
 
-<section class="section">
   <h2>Contact Us</h2>
 
-  <div class="contact-box">
-    <form id="contact-form">
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+  <div class="card">
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="email" id="email" placeholder="Your Email" required />
+      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
       <button type="submit">Send Message</button>
     </form>
   </div>
-</section>
-
-<footer>
-  © 2026 ServioNest | Powered by AI
-</footer>
 
 <script>
-document.getElementById("contact-form").addEventListener("submit", async function(e) {
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
   e.preventDefault();
 
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const message = document.getElementById("message").value;
 
-  const response = await fetch("/.netlify/functions/send-email", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      to: "support@servionest.com",
-      subject: "New ServioNest Contact Form Message",
-      message: `
-        <strong>Name:</strong> ${name}<br>
-        <strong>Email:</strong> ${email}<br>
-        <strong>Message:</strong><br>${message}
-      `
-    })
-  });
+  try {
+    const response = await fetch("/.netlify/functions/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: name,
+        email: email,
+        message: message
+      })
+    });
 
-  const result = await response.json();
+    if (response.ok) {
+      alert("Message sent successfully! 🚀");
+      document.getElementById("contactForm").reset();
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
 
-  if (result.success) {
-    alert("Message sent successfully!");
-    document.getElementById("contact-form").reset();
-  } else {
-    alert("There was an error sending your message.");
+  } catch (error) {
+    alert("Error sending message.");
   }
 });
 </script>
