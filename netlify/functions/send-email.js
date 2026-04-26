@@ -57,7 +57,7 @@ export async function handler(event) {
       },
       body: JSON.stringify({
         from: "ServioNest <support@servionest.com>",
-        to: "support@servionest.com",
+        to: "jhunelabs5@gmail.com",
         subject: "🚀 New ServioNest Contact Message",
         html: `
           <h2>New Lead Received</h2>
