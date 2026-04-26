@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-
 export async function handler(event) {
   if (event.httpMethod !== "POST") {
     return {
@@ -29,27 +27,50 @@ export async function handler(event) {
     });
 
     /* ===============================
-       2️⃣ TELEGRAM ALERT
+       2️⃣ TELEGRAM ALERT (SAFE)
     ================================ */
 
-    await fetch("https://api.telegram.org/bot8785815614:AAFgHPLPs0uMpt4uw5OH5zGMNE-SQ_q0K90/sendMessage", {
+    try {
+      await fetch("https://api.telegram.org/bot8785815614:AAFgHPLPs0uMpt4uw5OH5zGMNE-SQ_q0K90/sendMessage", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          chat_id: "5189362049",
+          text: `🔥 New ServioNest Lead\n\nName: ${name}\nEmail: ${email}\nMessage: ${message}\nPage: ${page}`
+        }),
+      });
+    } catch (telegramError) {
+      console.log("Telegram error:", telegramError);
+    }
+
+    /* ===============================
+       3️⃣ SEND ADMIN EMAIL
+    ================================ */
+
+    await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        chat_id: "5189362049",
-        text: `🔥 New ServioNest Lead
-
-Name: ${name}
-Email: ${email}
-Message: ${message}
-Page: ${page}`,
+        from: "ServioNest <support@servionest.com>",
+        to: "support@servionest.com",
+        subject: "🚀 New ServioNest Contact Message",
+        html: `
+          <h2>New Lead Received</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong> ${message}</p>
+          <p><strong>Page:</strong> ${page}</p>
+        `,
       }),
     });
 
     /* ===============================
-       3️⃣ SEND CONFIRMATION EMAIL (RESEND)
+       4️⃣ SEND CONFIRMATION EMAIL
     ================================ */
 
     await fetch("https://api.resend.com/emails", {
@@ -81,6 +102,7 @@ Page: ${page}`,
     };
 
   } catch (error) {
+    console.error("Function error:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: error.message }),
