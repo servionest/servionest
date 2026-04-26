@@ -3,221 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ServioNest AI</title>
+<title>ServioNest AI | AI Growth Platform</title>
 
-<link rel="stylesheet" href="assets/style.css">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Inter',sans-serif;
+  background: radial-gradient(circle at top right,#1f2937,#0b0f1a 60%);
+  color:white;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 8%;
+}
+header h1{
+  font-size:22px;
+  font-weight:700;
+  color:#6c5cff;
+}
+nav a{
+  margin-left:25px;
+  text-decoration:none;
+  color:#bbb;
+  font-weight:500;
+  transition:.3s;
+}
+nav a:hover{color:white;}
+
+.hero{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:100px 8%;
+  flex-wrap:wrap;
+}
+.hero-left{
+  max-width:600px;
+}
+.hero-left h2{
+  font-size:52px;
+  font-weight:800;
+  line-height:1.1;
+  margin-bottom:20px;
+}
+.hero-left span{color:#6c5cff;}
+.hero-left p{
+  font-size:18px;
+  color:#aaa;
+  margin-bottom:35px;
+}
+
+.btn-primary{
+  background:#6c5cff;
+  color:white;
+  padding:16px 30px;
+  border-radius:8px;
+  font-weight:600;
+  text-decoration:none;
+  display:inline-block;
+  transition:.3s;
+}
+.btn-primary:hover{opacity:.9;}
+
+.dashboard-card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  border-radius:16px;
+  padding:30px;
+  width:450px;
+  box-shadow:0 0 40px rgba(108,92,255,0.3);
+}
+.dashboard-card h3{
+  margin-bottom:15px;
+  font-size:18px;
+}
+.stats{
+  display:flex;
+  justify-content:space-between;
+  margin-top:20px;
+}
+.stat{
+  background:rgba(255,255,255,0.08);
+  padding:15px;
+  border-radius:10px;
+  width:30%;
+  text-align:center;
+}
+.stat h4{
+  font-size:20px;
+  color:#6c5cff;
+}
+
+footer{
+  text-align:center;
+  padding:40px 0;
+  color:#777;
+  border-top:1px solid #1f2937;
+  margin-top:80px;
+}
+
+@media(max-width:900px){
+.hero{flex-direction:column;text-align:center;}
+.dashboard-card{margin-top:40px;width:100%;}
+}
+</style>
 </head>
+
 <body>
 
-<!-- Announcement Bar -->
-<div class="announcement">
-🔥 Launch Offer: 20% OFF first 3 months — Use code LAUNCH39
-</div>
-
-<!-- Navigation -->
-<header class="navbar">
-<div class="container nav-inner">
-
-<div class="logo">
-ServioNest <span>AI</span>
-</div>
-
-<nav class="nav-links">
-<a href="#">Plumbers</a>
-<a href="#">Clinics</a>
-<a href="#">Property</a>
+<header>
+<h1>ServioNest AI</h1>
+<nav>
+<a href="#">Home</a>
+<a href="#">Solutions</a>
 <a href="#">Pricing</a>
-<a href="#">FAQ</a>
 <a href="#">Contact</a>
 </nav>
-
-<div class="nav-cta">
-<button class="btn-outline">Book Free Demo</button>
-<button class="btn-primary">Start 7-Day Free Trial</button>
-</div>
-
-</div>
 </header>
 
-<!-- HERO SECTION -->
 <section class="hero">
-<div class="container hero-grid">
 
-<!-- LEFT CONTENT -->
-<div class="hero-content">
+<div class="hero-left">
+<h2>AI-Powered Growth Platform<br>For <span>Service Businesses</span></h2>
 
-<div class="pill">
-⚡ 24/7 Lead Capture • Booking • Automation
-</div>
+<p>Capture leads, automate responses, and convert customers 24/7 using intelligent AI assistants designed for plumbers, clinics, electricians and property managers.</p>
 
-<h1>
-AI-Powered Growth Platform for
-<span>Service Businesses</span>
-</h1>
-
-<p>
-ServioNest AI captures leads, books appointments, automates replies,
-and increases conversions — even while you're on a job.
-</p>
-
-<div class="hero-buttons">
-<button class="btn-primary large">Start 7-Day Free Trial</button>
-<button class="btn-outline large">Book Free Demo</button>
-</div>
-
-<div class="hero-meta">
-£49/month • 7-Day Free Trial • Cancel anytime • Setup in 48 hours
-</div>
+<a href="https://buy.stripe.com/28EfZj0yn753fLseiWe7m01"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="btn-primary">
+Start 7-Day Free Trial
+</a>
 
 </div>
-
-<!-- RIGHT DASHBOARD -->
-<div class="hero-visual">
 
 <div class="dashboard-card">
-
-<div class="dashboard-sidebar">
-<p class="active">Dashboard</p>
-<p>Conversations</p>
-<p>Leads</p>
-<p>Bookings</p>
-<p>Analytics</p>
-<p>Settings</p>
-</div>
-
-<div class="dashboard-main">
-
+<h3>Live Performance Overview</h3>
 <div class="stats">
 <div class="stat">
-<h3>128</h3>
-<span>Total Leads</span>
+<h4>128</h4>
+<p>Leads</p>
 </div>
 <div class="stat">
-<h3>42</h3>
-<span>Bookings</span>
+<h4>42</h4>
+<p>Bookings</p>
 </div>
 <div class="stat">
-<h3>32%</h3>
-<span>Conversion</span>
+<h4>32%</h4>
+<p>Conversion</p>
 </div>
-</div>
-
-<canvas id="leadChart"></canvas>
-
 </div>
 </div>
 
-<div class="assistant-card">
-<h4>ServioNest AI Assistant</h4>
-<p>Hi 👋 I'm your AI assistant.<br>How can I help you today?</p>
-
-<button>Select service type</button>
-<button>Share email / phone</button>
-<button>Ask a question</button>
-
-<small>We typically reply in a few seconds.</small>
-</div>
-
-</div>
-</div>
 </section>
 
-<!-- LOWER SECTION -->
-<section class="lower">
-<div class="container lower-grid">
-
-<!-- PRICING -->
-<div class="pricing-card">
-<h3>ServioNest AI</h3>
-<div class="price">£49 <span>/month</span></div>
-
-<ul>
-<li>✔ AI chat on your website</li>
-<li>✔ Lead capture & booking flow</li>
-<li>✔ Email notifications</li>
-<li>✔ Industry-specific AI prompts</li>
-<li>✔ Install in 48 hours</li>
-</ul>
-
-<button class="btn-primary full">Start Free Trial</button>
-<p class="setup">Setup: £49 one-off • Use code LAUNCH39</p>
-</div>
-
-<!-- WHY CHOOSE -->
-<div class="why-card">
-<h3>Why Businesses Choose ServioNest AI</h3>
-<p>✔ Capture more leads 24/7</p>
-<p>✔ Automate & save time</p>
-<p>✔ Increase bookings & revenue</p>
-<p>✔ Easy setup, no hassle</p>
-</div>
-
-<!-- TESTIMONIAL -->
-<div class="testimonial-card">
-<h3>What Our Clients Say</h3>
-<p>⭐⭐⭐⭐⭐</p>
-<p>“We booked 12 jobs in the first week.”</p>
-</div>
-
-<!-- FAQ -->
-<div class="faq-card">
-<h3>FAQ</h3>
-<p><strong>When does billing start?</strong><br>
-After your 7-day free trial.</p>
-
-<p><strong>Is there a contract?</strong><br>
-No, cancel anytime.</p>
-</div>
-
-</div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-<div class="container footer-inner">
-
-<div class="social">
-<span>Facebook</span>
-<span>Instagram</span>
-<span>WhatsApp</span>
-</div>
-
-<div class="email">
-hello@servionest.com
-</div>
-
-<div class="copy">
+<footer>
 © 2026 ServioNest AI. All rights reserved.
-</div>
-
-</div>
 </footer>
-
-<script>
-const ctx = document.getElementById('leadChart').getContext('2d');
-
-new Chart(ctx, {
-type: 'line',
-data: {
-labels: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
-datasets: [{
-data: [12,19,15,28,35,48,60],
-borderColor: '#22c55e',
-backgroundColor: 'rgba(34,197,94,0.2)',
-fill: true,
-tension: 0.4
-}]
-},
-options: {
-plugins: { legend: { display: false }},
-scales: {
-x: { ticks: { color: '#94a3b8' }},
-y: { ticks: { color: '#94a3b8' }}
-}
-}
-});
-</script>
 
 </body>
 </html>
