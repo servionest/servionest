@@ -6,8 +6,25 @@ exports.handler = async (event) => {
 
     const { name, email, message } = JSON.parse(event.body);
 
+    const page = event.headers.referer || "unknown";
+
     /* ===============================
-       1️⃣ SEND ADMIN NOTIFICATION
+       1️⃣ SAVE TO GOOGLE SHEETS CRM
+    =============================== */
+
+    await fetch("https://script.google.com/macros/s/AKfycbwyaGCJTeoLkA4-dxBmbz3bQsJcLeqdhqkVXJaFU7UzlYnrm5MLKVblacGQMGRtwLZZvQ/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        message,
+        page
+      })
+    });
+
+    /* ===============================
+       2️⃣ SEND ADMIN NOTIFICATION
     =============================== */
 
     await resend.emails.send({
@@ -44,7 +61,7 @@ exports.handler = async (event) => {
     });
 
     /* ===============================
-       2️⃣ SEND AUTO REPLY
+       3️⃣ SEND AUTO REPLY
     =============================== */
 
     await resend.emails.send({
@@ -85,7 +102,7 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Message sent successfully! 🚀' }),
+      body: JSON.stringify({ message: 'Message sent and saved successfully! 🚀' }),
     };
 
   } catch (error) {
