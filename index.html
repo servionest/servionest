@@ -1,169 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ServioNest AI | AI Growth Platform</title>
+  <meta charset="UTF-8">
+  <title>ServioNest – AI Growth Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    header {
+      padding: 60px 20px;
+    }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-  font-family:'Inter',sans-serif;
-  background: radial-gradient(circle at top right,#1f2937,#0b0f1a 60%);
-  color:white;
-}
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:20px 8%;
-}
-header h1{
-  font-size:22px;
-  font-weight:700;
-  color:#6c5cff;
-}
-nav a{
-  margin-left:25px;
-  text-decoration:none;
-  color:#bbb;
-  font-weight:500;
-  transition:.3s;
-}
-nav a:hover{color:white;}
+    h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
 
-.hero{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:100px 8%;
-  flex-wrap:wrap;
-}
-.hero-left{
-  max-width:600px;
-}
-.hero-left h2{
-  font-size:52px;
-  font-weight:800;
-  line-height:1.1;
-  margin-bottom:20px;
-}
-.hero-left span{color:#6c5cff;}
-.hero-left p{
-  font-size:18px;
-  color:#aaa;
-  margin-bottom:35px;
-}
+    p {
+      opacity: 0.8;
+    }
 
-.btn-primary{
-  background:#6c5cff;
-  color:white;
-  padding:16px 30px;
-  border-radius:8px;
-  font-weight:600;
-  text-decoration:none;
-  display:inline-block;
-  transition:.3s;
-}
-.btn-primary:hover{opacity:.9;}
+    .section {
+      padding: 60px 20px;
+    }
 
-.dashboard-card{
-  background:rgba(255,255,255,0.05);
-  backdrop-filter:blur(10px);
-  border-radius:16px;
-  padding:30px;
-  width:450px;
-  box-shadow:0 0 40px rgba(108,92,255,0.3);
-}
-.dashboard-card h3{
-  margin-bottom:15px;
-  font-size:18px;
-}
-.stats{
-  display:flex;
-  justify-content:space-between;
-  margin-top:20px;
-}
-.stat{
-  background:rgba(255,255,255,0.08);
-  padding:15px;
-  border-radius:10px;
-  width:30%;
-  text-align:center;
-}
-.stat h4{
-  font-size:20px;
-  color:#6c5cff;
-}
+    .contact-box {
+      max-width: 500px;
+      margin: auto;
+      background: #1e293b;
+      padding: 30px;
+      border-radius: 10px;
+    }
 
-footer{
-  text-align:center;
-  padding:40px 0;
-  color:#777;
-  border-top:1px solid #1f2937;
-  margin-top:80px;
-}
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: none;
+    }
 
-@media(max-width:900px){
-.hero{flex-direction:column;text-align:center;}
-.dashboard-card{margin-top:40px;width:100%;}
-}
-</style>
+    button {
+      background: #22c55e;
+      border: none;
+      padding: 12px 20px;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #16a34a;
+    }
+
+    footer {
+      padding: 30px;
+      font-size: 14px;
+      opacity: 0.6;
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-<h1>ServioNest AI</h1>
-<nav>
-<a href="#">Home</a>
-<a href="#">Solutions</a>
-<a href="#">Pricing</a>
-<a href="#">Contact</a>
-</nav>
+  <h1>ServioNest</h1>
+  <p>AI-Powered Growth Platform for Modern Businesses</p>
 </header>
 
-<section class="hero">
+<section class="section">
+  <h2>Contact Us</h2>
 
-<div class="hero-left">
-<h2>AI-Powered Growth Platform<br>For <span>Service Businesses</span></h2>
-
-<p>Capture leads, automate responses, and convert customers 24/7 using intelligent AI assistants designed for plumbers, clinics, electricians and property managers.</p>
-
-<a href="https://buy.stripe.com/28EfZj0yn753fLseiWe7m01"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="btn-primary">
-Start 7-Day Free Trial
-</a>
-
-</div>
-
-<div class="dashboard-card">
-<h3>Live Performance Overview</h3>
-<div class="stats">
-<div class="stat">
-<h4>128</h4>
-<p>Leads</p>
-</div>
-<div class="stat">
-<h4>42</h4>
-<p>Bookings</p>
-</div>
-<div class="stat">
-<h4>32%</h4>
-<p>Conversion</p>
-</div>
-</div>
-</div>
-
+  <div class="contact-box">
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
 </section>
 
 <footer>
-© 2026 ServioNest AI. All rights reserved.
+  © 2026 ServioNest | Powered by AI
 </footer>
+
+<script>
+document.getElementById("contact-form").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+
+  const response = await fetch("/.netlify/functions/send-email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      to: "support@servionest.com",
+      subject: "New ServioNest Contact Form Message",
+      message: `
+        <strong>Name:</strong> ${name}<br>
+        <strong>Email:</strong> ${email}<br>
+        <strong>Message:</strong><br>${message}
+      `
+    })
+  });
+
+  const result = await response.json();
+
+  if (result.success) {
+    alert("Message sent successfully!");
+    document.getElementById("contact-form").reset();
+  } else {
+    alert("There was an error sending your message.");
+  }
+});
+</script>
 
 </body>
 </html>
