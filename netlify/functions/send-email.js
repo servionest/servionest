@@ -1,116 +1,89 @@
-const { Resend } = require('resend');
+import fetch from "node-fetch";
 
-exports.handler = async (event) => {
+export async function handler(event) {
+  if (event.httpMethod !== "POST") {
+    return {
+      statusCode: 405,
+      body: "Method Not Allowed",
+    };
+  }
+
   try {
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    const { name, email, message } = JSON.parse(event.body);
-
-    const page = event.headers.referer || "unknown";
+    const { name, email, message, page } = JSON.parse(event.body);
 
     /* ===============================
        1️⃣ SAVE TO GOOGLE SHEETS CRM
-    =============================== */
+    ================================ */
 
     await fetch("https://script.google.com/macros/s/AKfycbwyaGCJTeoLkA4-dxBmbz3bQsJcLeqdhqkVXJaFU7UzlYnrm5MLKVblacGQMGRtwLZZvQ/exec", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({
         name,
         email,
         message,
-        page
-      })
+        page,
+      }),
     });
 
     /* ===============================
-       2️⃣ SEND ADMIN NOTIFICATION
-    =============================== */
+       2️⃣ TELEGRAM ALERT
+    ================================ */
 
-    await resend.emails.send({
-      from: 'ServioNest <support@servionest.com>',
-      to: 'support@servionest.com',
-      subject: '🚀 New ServioNest Contact Message',
-      html: `
-      <div style="font-family: Arial, sans-serif; background:#f4f6f8; padding:20px;">
-        <div style="max-width:600px; margin:auto; background:white; border-radius:8px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-          
-          <div style="background:#0f172a; padding:20px; text-align:center;">
-            <h2 style="color:white; margin:0;">New ServioNest Lead 🚀</h2>
-          </div>
+    await fetch("https://api.telegram.org/bot8785815614:AAFgHPLPs0uMpt4uw5OH5zGMNE-SQ_q0K90/sendMessage", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        chat_id: "5189362049",
+        text: `🔥 New ServioNest Lead
 
-          <div style="padding:20px;">
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> ${email}</p>
-
-            <p><strong>Message:</strong></p>
-            <div style="background:#f1f5f9; padding:15px; border-radius:6px;">
-              ${message}
-            </div>
-
-            <br>
-
-            <p style="font-size:12px; color:#64748b;">
-              Received via ServioNest Contact Form
-            </p>
-          </div>
-
-        </div>
-      </div>
-      `
+Name: ${name}
+Email: ${email}
+Message: ${message}
+Page: ${page}`,
+      }),
     });
 
     /* ===============================
-       3️⃣ SEND AUTO REPLY
-    =============================== */
+       3️⃣ SEND CONFIRMATION EMAIL (RESEND)
+    ================================ */
 
-    await resend.emails.send({
-      from: 'ServioNest <support@servionest.com>',
-      to: email,
-      subject: '💙 We received your message!',
-      html: `
-      <div style="font-family: Arial, sans-serif; background:#f4f6f8; padding:20px;">
-        <div style="max-width:600px; margin:auto; background:white; border-radius:8px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-
-          <div style="background:#0f172a; padding:20px; text-align:center;">
-            <h2 style="color:white; margin:0;">Thank You for Contacting ServioNest 💙</h2>
-          </div>
-
-          <div style="padding:20px;">
-            <p>Hi ${name},</p>
-
-            <p>We’ve received your message and our team will get back to you shortly.</p>
-
-            <p>If your inquiry is urgent, feel free to reply directly to this email.</p>
-
-            <div style="text-align:center; margin:30px 0;">
-              <a href="https://servionest.com"
-                 style="background:#22c55e; color:white; padding:12px 24px; text-decoration:none; border-radius:6px; font-weight:bold;">
-                 Visit ServioNest
-              </a>
-            </div>
-
-            <p style="font-size:12px; color:#64748b;">
-              ServioNest — AI-Powered Growth Platform for Modern Businesses
-            </p>
-          </div>
-
-        </div>
-      </div>
-      `
+    await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: "ServioNest <support@servionest.com>",
+        to: email,
+        subject: "💙 We received your message!",
+        html: `
+          <h2>Hi ${name},</h2>
+          <p>Thanks for contacting ServioNest.</p>
+          <p>We received your message and will respond shortly.</p>
+          <br/>
+          <strong>Your Message:</strong>
+          <p>${message}</p>
+          <br/>
+          <p>🚀 ServioNest Team</p>
+        `,
+      }),
     });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: 'Message sent and saved successfully! 🚀' }),
+      body: JSON.stringify({ success: true }),
     };
 
   } catch (error) {
-    console.error(error);
-
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Something went wrong.' }),
+      body: JSON.stringify({ error: error.message }),
     };
   }
-};
+}
