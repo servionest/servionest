@@ -23,6 +23,7 @@ export async function handler(event) {
         email,
         message,
         page,
+        status: "Contacted"
       }),
     });
 
